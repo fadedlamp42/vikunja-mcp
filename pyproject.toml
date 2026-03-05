@@ -1,0 +1,46 @@
+[project]
+name = "prism-vikunja-mcp"
+version = "0.1.1"
+description = "python mcp server with broad vikunja api coverage"
+authors = [
+    {name = "Peter",email = "peter@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "fastmcp (>=3.1.0,<4.0.0)",
+    "httpx (>=0.28.1,<0.29.0)"
+]
+
+[project.scripts]
+prism-vikunja-mcp = "prism_vikunja_mcp.__main__:main"
+prism-vikunja-validate-schemas = "prism_vikunja_mcp.schema_validation:main"
+
+[tool.poetry]
+packages = [{ include = "prism_vikunja_mcp", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.3.0"
+ruff = "^0.13.0"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "N", "UP", "B", "SIM", "RUF", "C4", "PIE", "RET", "TCH", "LOG"]
+ignore = ["E501", "UP031", "RET504", "SIM108"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["prism_vikunja_mcp"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

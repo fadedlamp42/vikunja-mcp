@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: validate-vikunja-tool-schemas
+        name: validate generated vikunja tool schemas
+        entry: poetry run prism-vikunja-validate-schemas
+        language: system
+        pass_filenames: false
